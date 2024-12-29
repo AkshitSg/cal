@@ -8,9 +8,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 @SpringBootApplication
 public class ClaApplication {
@@ -28,8 +30,34 @@ public class ClaApplication {
 			System.out.println("Starting student creation process...");
 			// creating students
 			createStudent(studentDao);
+			updateStudent(studentDao);
 		};
 	}
+
+	private void updateStudent(StudentDao studentDao) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter lastname of the student you want to update:\n");
+		String lastname=sc.nextLine();
+		List<Student> theStudent=studentDao.findByLastName(lastname);
+		if(!theStudent.isEmpty()){
+			System.out.println(theStudent.size()+" students found.");
+			System.out.println("Student current Details:\n");
+			for(Student s:theStudent){
+				System.out.println(s.toString());
+			}
+			System.out.println("Enter the field name you want to update: ");
+			String fieldName=sc.nextLine();
+			switch (fieldName){
+				case ():
+			}
+		}else{
+			System.out.println("We could not find any student with lastname:"+lastname+" in our db. please verify the name.");
+		}
+
+
+
+	}
+
 	private void createStudent(StudentDao studentDao){
 
 		Student s1=new Student("Akshit","Sagar","sagarakshit@yahoo.com");
